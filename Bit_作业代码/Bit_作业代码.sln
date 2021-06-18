@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "6_9 对应成绩", "6_9 对
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "craft", "craft\craft.vcxproj", "{D3F45411-CD87-4782-B888-8D514627DA5F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "6_15代码", "6_15代码\6_15代码.vcxproj", "{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{D3F45411-CD87-4782-B888-8D514627DA5F}.Release|x64.Build.0 = Release|x64
 		{D3F45411-CD87-4782-B888-8D514627DA5F}.Release|x86.ActiveCfg = Release|Win32
 		{D3F45411-CD87-4782-B888-8D514627DA5F}.Release|x86.Build.0 = Release|Win32
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Debug|x64.ActiveCfg = Debug|x64
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Debug|x64.Build.0 = Debug|x64
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Debug|x86.ActiveCfg = Debug|Win32
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Debug|x86.Build.0 = Debug|Win32
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Release|x64.ActiveCfg = Release|x64
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Release|x64.Build.0 = Release|x64
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Release|x86.ActiveCfg = Release|Win32
+		{A03AE998-1CEC-4E7D-998A-F656D4ABC65D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
