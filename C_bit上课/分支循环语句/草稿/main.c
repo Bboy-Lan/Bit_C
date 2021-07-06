@@ -1,53 +1,30 @@
 #define _CRT_SECURE_NO_WARNINGS
+
 #include<stdio.h>
 
-//void test()
-//{
-//	static int a = 1;
-//	a = a + 1;
-//	printf("%d ", a);
-//}
-
-//#define MAX(x,y) (x > y ? x : y)
-
-enum level//枚举常量
+struct information //  结构体变量 
 {
-	one,
-	two,
-	three
+	char name[20];
+	int age;
+	float height;
+	char sex[4];
 };
 int main()
 {
 
-	printf("%d\n", one);
-	printf("%d\n",two);
-	printf("%d\n", three);
-
-	//int a = 1 , b = 2;
-	//int c = MAX (a , b);
-	//
-	//printf("%d\n", c);
-
+	struct information i1 = { "张三", 18 , 1.78 , "男" };
+	// . 引用操作符
+	printf("姓名：%s 年龄：%d 身高：%.2f 性别：%s\n", i1.name, i1.age, i1.height, i1.sex); 
 	
-	//int arr[MAX];
-	//
-	//MAX = 20;
-	//
+																 
+	struct information* pa = &i1;// pa 即为指针变量
+	// 解引用 *pa  就是原本的 i1  *pa = il
+	printf("姓名：%s 年龄：%d 身高：%.2f 性别：%s\n", (*pa).name, (*pa).age, (*pa).height, (*pa).sex);
+	// 这两种表达方式都是一样的
+	
+	//指向操作符  ->
+	printf("姓名：%s 年龄：%d 身高：%.2f 性别：%s\n", pa->name, pa->age, pa->height, pa->sex);
 	
 	
-	//int i = 0;
-	//while (i < 10)
-	//{
-	//	test();
-	//	i += 1;
-	//}
-
-
-	//ushort a = 1;
-	//printf("%d\n", sizeof(ushort));//2
-	//	 
-
-
-
 	return 0;
 }
