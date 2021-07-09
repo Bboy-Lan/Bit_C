@@ -9,19 +9,43 @@
 //	float height;
 //	char sex[4];
 //};
-//struct student
-//{
-//	char name[10];
-//	int age;
-//	char ID[20];
-//	char tel[15];
-//};
+// 
+
+
+struct student
+{
+	char name[15];
+	char sex[5];
+	int age;
+	float height;
+};
+
 int main()
 {
+	struct student s1 = { "张三" , "男" , 18 , 1.70 };
+	 
+	struct student* pa = &s1;
+	*pa;
 	
+	//指向操作符  指针变量 pa->（定义的名字）
+	printf("%s %s %d %.2f\n",pa->name,pa->sex,pa->age,pa->height );
 
 
 
+
+
+
+
+
+
+
+	//int a = 1;
+	//
+	//int* pa = &a;
+	//printf("%p\n", &a);
+
+	//*pa = 2;
+	//printf("%d\n", a);
 
 	//struct information i1 = { "张三", 18 , 1.78 , "男" };
 	//// . 引用操作符
