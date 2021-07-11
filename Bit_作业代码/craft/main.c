@@ -10,7 +10,8 @@ int main()
 	//a > 0 ? printf("Yes") : printf("No");
 
 
-	//
+	//×÷Òµ´úÂë
+	// 
 	//int a = 3, b = 2;
 	//if (1 == a || 1 == b)
 	//	printf("True");
