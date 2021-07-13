@@ -22,13 +22,40 @@ struct student
 
 int main()
 {
-	struct student s1 = { "张三" , "男" , 18 , 1.70 };
-	 
-	struct student* pa = &s1;
-	*pa;
+
+
+
+	//计算n的阶乘
 	
-	//指向操作符  指针变量 pa->（定义的名字）
-	printf("%s %s %d %.2f\n",pa->name,pa->sex,pa->age,pa->height );
+	//计算 1-10 的阶乘
+
+	int i,j,add=0;
+
+	for (i = 1; i <= 3; i++)
+	{
+		int sum = 1;//如果不这样在循环里面定义 最后结果会累积 达不到效果
+		
+		for (j = 1; j <= i; j++)// 计算 n 的阶乘
+		{
+			sum = sum * j;
+		}
+		add = add + sum;
+	}
+
+	printf("%d\n", add);
+
+
+
+
+
+
+	//struct student s1 = { "张三" , "男" , 18 , 1.70 };
+	// 
+	//struct student* pa = &s1;
+	//*pa;
+	//
+	////指向操作符  指针变量 pa->（定义的名字）
+	//printf("%s %s %d %.2f\n",pa->name,pa->sex,pa->age,pa->height );
 
 
 
