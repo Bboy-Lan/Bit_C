@@ -67,22 +67,26 @@ int main()
 
 
 
-	int n = 0, i = 0, x, sum = 0;
+	int n = 0;
 	scanf("%d", &n);
-	int arr[100];
+	int arr[100] = { 0 };
+	int i = 0;
 
-	for (i = 0; i < n; i++)// 这里注意一下 < n 并不是  < = n
+	for (i = 0; i < n; i++)
 	{
 		scanf("%d ", &arr[i]);
 	}
 
+	int x = 0, sum = 0;//这里 x忘记用scanf取了
 	scanf("%d", &x);
-	for (i = 0; i < n; i++)//写循环 输入的 n 是多少就判断几次
+	for (i = 0; i < n; i++)
 	{
 		if (x == arr[i])
-			sum = sum + 1;
+		{
+			sum++;
+		}
 	}
-	printf("%d\n", sum);
+	printf("%d", sum);
 
 
 
