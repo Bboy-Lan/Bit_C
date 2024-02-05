@@ -112,7 +112,7 @@ int main() {
 int main() {
 	float num = 0.0;
 	int i = 0;
-	for (i = 1; i <= 100; i++) 
+	for (i = 1; i <= 100; i++)
 	{
 		if (i % 2 != 0)//奇数为正
 			num = num + 1.0 / i;//还能设置flag为符号每次正负变换
@@ -168,6 +168,22 @@ int main() {
 		for (j = 1; j <= i; j++)// j 跟着 i走 一行一行的打印
 		{
 			printf("%d*%d=%.2d ",i,j,i*j);//此处 .2d 空位用0补充 和 2d 空位直接空格 的区别
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+//如：输入9，输出9 * 9口诀表，输出12，输出12 * 12的乘法口诀表。
+int main() {
+	int i = 0, j = 0;//表示行数 列数
+	int n = 0;
+	scanf("%d", &n);
+	for (i = 1; i <= n; i++)
+	{
+		for (j = 1; j <= i; j++)
+		{
+			printf("%d*%d=%.2d  ", i, j, i * j);
 		}
 		printf("\n");
 	}
@@ -277,3 +293,313 @@ int main() {
 	return 0;
 }
 ```
+
+
+
+# 递归
+
+1. 递归-接受一个整型数值，按顺序打印它的每一位
+
+```c
+void print(int num)
+{
+	//结束条件  并且是按顺序打印
+	if (num > 9)
+	{
+		print(num / 10);
+	}
+	printf("%d ", num % 10);
+}
+
+//递归-接受一个整型数值，按顺序打印它的每一位
+int main()
+{
+	unsigned int num;
+	scanf("%d", &num);
+	print(num);
+	//1234  1234 % 10 = 4  1234 / 10 = 123 
+	return 0;
+}
+```
+
+2. 编写一个函数 不允许创建临时变量 求字符串的长度
+
+```c
+//解法一： 普通求解
+int my_strlen1(char* s)
+{
+	int num = 0;
+	while (*s != '\0')
+	{
+		num++;
+		s++;//指针自加也相当于地址自加
+	}
+	return num;
+}
+//解法二： 递归求解 - 不建议在递归中写 s++ ++s 易错
+int my_strlen2(char * s)
+{
+	//判断是否是 \0  比如 abc  1 + my_strlen2（bc）... ...
+	if (*s != '\0')
+	{
+		return 1 + my_strlen2(s + 1);
+	}
+	return 0;
+}
+
+//编写一个函数 不允许创建临时变量 求字符串的长度
+int main()
+{
+	char arr[] = "abcdef";//长度为 6
+	int len1 = 0,len2 = 0;
+
+	len1 = my_strlen1(arr);
+	printf("%d\n", len1);
+
+	len2 = my_strlen2(arr);
+	printf("%d\n", len2);
+	return 0;
+}
+```
+
+3. 递归求n的阶乘
+
+```c
+//递归实现 n的阶乘
+int main()
+{
+	int num = 1, i = 0;
+	int n = 0;
+	scanf("%d", &n);
+	for (i = 1; i <= n; i++)
+	{
+		num = num * i;
+	}
+	printf("%d\n", num);
+	return 0;
+}
+
+int fac(int n)//求某个数的阶乘
+{
+	int num = 1, i = 0;
+	for (i = 1; i <= n; i++)
+	{
+		num = num * i;
+	}
+	return num;
+}
+int fac1(int n)
+{
+	if (n <= 1)
+		return 1;
+	else
+		return n * fac1(n - 1);
+}
+
+// n 个阶乘的和 1! + 2! + 3! + ...
+int main()
+{
+	int sum = 0, i = 0;
+	int n = 0;
+	scanf("%d", &n);
+	for (i = 1; i <= n; i++)
+	{
+		sum = sum + fac(i);
+	}
+	printf("%d\n", sum);
+	printf("%d\n", fac1(n));
+
+	return 0;
+}
+```
+
+4. 求斐波拉契数列
+
+   ```c
+   int count = 0;
+   int Fib1(int num)
+   {
+   	if (num == 3)//查看某一步的重复计算次数
+   	{
+   		count++;
+   	}
+   	if (num <= 2)
+   		return 1;
+   	else
+   		return Fib1(num - 1) + Fib1(num - 2);
+   }
+   
+   int Fib2(int num)//非递归求法
+   {
+   	int a = 1;
+   	int b = 1;
+   	int c = 1;
+   	while (num > 2)//清楚如何推断的
+   	{
+   		c = a + b;  // 第 n 个数赋值 n-2次  第3个数赋值1次 ... ... 
+   		a = b;
+   		b = c;
+   		num--;
+   	}
+   	return c;
+   }
+   //斐波拉契函数 1 1 2 3 5
+   int main()
+   {
+   	int ret1 = Fib1(40);
+   	int ret2 = Fib2(40);
+   	printf("%d\n", ret1);
+   	printf("%d\n", ret2);
+   	printf("其中3的重复计算次数为：%d\n", count);
+   	return 0;
+   }
+   ```
+
+   5. 求字符串长度
+   
+   ```c
+   //自定义 求字符串长度函数
+   int my_strlen(char* arr)
+   {
+   	if (*arr != '\0')
+   		return 1 + my_strlen(arr + 1);
+   	else
+   		return 0;
+   }
+   //递归实现 - 有些难理解
+   void reverse_string1(char* arr)
+   {
+   	int len = my_strlen(arr);
+   	char temp = arr[0];
+   	// 先处理交换 再调用交换
+   	arr[0] = arr[len - 1];
+   	arr[len - 1] = '\0';//为啥放 \0 因为放了之后直接就能 从 \0 开始 截取一段字符串 f bcde\0 \0
+   
+   	if (my_strlen(arr + 1) >= 2)//不能直接用len 来判断 因为每一次长度都在发生改变  要要注意这个递归的结束条件
+   		reverse_string1(arr + 1);//不是 减 1
+   	arr[len - 1] = temp;
+   
+   }
+   //非递归实现
+   void reverse_string2(char* arr)
+   {
+   	int len = my_strlen(arr);
+   	int left = 0;
+   	int right = len - 1;
+   	while (left < right)
+   	{
+   		int temp = arr[left];
+   		arr[left] = arr[right];
+   		arr[right] = temp;
+   		left++;
+   		right--;
+   	}
+   }
+   //反转字符串
+   int main()
+   {
+   	char arr[] = "abcdef";
+   	//int len = sizeof(arr) / sizeof(arr[0]);
+   	reverse_string1(arr);
+   	//for (int i = 0; i < len; i++)
+   	//{
+   	//	printf("%c", arr[i]);
+   	//}
+   	printf("%s", arr);//不需要循环 直接打印即可
+   	return 0;
+   }
+   ```
+   
+   6. 写一个递归函数DigitSum(n)，输入一个非负整数，返回组成它的数字之和
+   
+   ```c
+   //写一个递归函数DigitSum(n)，输入一个非负整数，返回组成它的数字之和
+   int DigitSum(int n)
+   {
+   	if (n > 9)
+   		return n % 10 + DigitSum(n / 10);
+   	else
+   		return n;
+   }
+   int main() 
+   {
+   	int n = 0;
+   	scanf("%d", &n);//1234--10
+   	printf("%d\n", DigitSum(n));
+   	return 0;
+   }
+   ```
+   
+   7. 编写一个函数实现n的k次方，使用递归实
+   
+   ```c
+   //k 值需要讨论  > 0   < 0  = 0
+   int fac(int n, int k)
+   {
+   	if (k > 0)
+   		return n * fac(n, k - 1);
+   	else if (k < 0)
+   		return 1.0 / n * fac(n, k - 1);
+   	else// 等于0
+   		return 1;
+   }
+   //编写一个函数实现n的k次方，使用递归实现 
+   int main()
+   {
+   	int n = 0, k = 0;
+   	scanf("%d%d", &n, &k);
+   	printf("%d的%d次方结果为:：%d\n", n, k, fac(n, k));
+   	return 0;
+   }
+   ```
+   
+
+
+
+
+
+
+
+# 项目
+
+## 三子棋
+
+
+
+# 易错知识汇总
+
+1. 字符串中的 \0 虽然算个数时不占位置 但是放数组里面需要占一个位置
+
+1. 如何函数封装成 **.lib** （静态库）文件格式  （位置别放错）
+
+1. srand 函数如何生成随机数
+
+1. **栈区**：局部变量 形式参数  **堆区**：动态内存分配 malloc calloc realloc free  **静态区**：全局变量 静态变量
+
+1. 数组名是否是首元素地址，两个例外：
+
+   1. sizeof（数组名）此处表示的是整个数组 
+
+   2. &数组名 也表示整个数组，指整个数组的地址
+
+```c
+//数组名是否是首元素地址
+int main()
+{
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	//意义不同 虽然都是  012FF744
+	printf("%p\n", arr);
+	printf("%p\n", &arr[0]);//这两个都表示首元素地址
+
+	printf("%p\n", &arr);//表示数组地址
+
+	printf("--------------------\n");
+	printf("%p\n", arr + 1);
+	printf("%p\n", &arr[0] + 1);// 012FF748  起始地址 + 4
+
+	printf("%p\n", &arr + 1);//012FF76C 指向数组的指针 直接跳过整个数组 因此相差 40 
+
+	return 0;
+}
+```
+
